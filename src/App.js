@@ -43,6 +43,10 @@ const App = function (props) {
         gridRef.current.api.deselectAll();
         setSelectedCount(gridRef.current.api.getSelectedRows().length);
     };
+
+    const handleRowClicked = (params) => {
+        setSelectedCount(gridRef.current.api.getSelectedRows().length);
+    };
     const selectedCountTxt = "Selected Rows: " + selectedCount;
 
     return (
@@ -62,7 +66,9 @@ const App = function (props) {
                     defaultColDef={defaultColDef}
                     alwaysShowHorizontalScroll
                     animateRows={true}
+                    rowSelection='multiple'
                     rowData={rowData}
+                    onRowClicked={(p) => handleRowClicked(p)}
                 />
             </div>
         </div>
