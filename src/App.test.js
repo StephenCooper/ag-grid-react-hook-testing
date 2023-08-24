@@ -33,6 +33,8 @@ it('single row selected via onClick', async () => {
     act(() => screen.getByText('Alicia Coutts').click());
     await screen.findByText('Selected Rows: 1');
 
+    await screen.findByText('Selected Cell value: Alicia Coutts');
+
 });
 
 
@@ -46,4 +48,5 @@ it('multiple rows selected via shift click', async () => {
   await user.click(element);
 
   await screen.findByText("Selected Rows: 4");
+  await screen.findByText('Selected Cell value: Allison Schmitt');
 });

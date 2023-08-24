@@ -23,6 +23,7 @@ const App = function (props) {
     }), []);
 
     const [selectedCount, setSelectedCount] = useState(0);
+    const [selectedCellContents, setSelectedCellContents] = useState(null);
     const [rowData, setRowData] = useState(null);
 
     const gridRef = useRef(null);
@@ -47,6 +48,10 @@ const App = function (props) {
     const handleRowClicked = (params) => {
         setSelectedCount(gridRef.current.api.getSelectedRows().length);
     };
+    const handleCellClicked = (params) => {
+        setSelectedCellContents(params.value);
+    };
+
     const selectedCountTxt = "Selected Rows: " + selectedCount;
 
     return (
@@ -54,6 +59,7 @@ const App = function (props) {
             <button id="selectAll" onClick={handleSelectAll}>Select All Rows</button>
             <button id="deSelectAll" onClick={handleDeselectAll}>Deselect All Rows</button>
             <div>{selectedCountTxt}</div>
+            <div>Selected Cell value: {selectedCellContents}</div>
             <div
                 className="ag-theme-balham"
                 style={{
@@ -69,6 +75,7 @@ const App = function (props) {
                     rowSelection='multiple'
                     rowData={rowData}
                     onRowClicked={(p) => handleRowClicked(p)}
+                    onCellClicked={(p) => handleCellClicked(p)}
                 />
             </div>
         </div>
