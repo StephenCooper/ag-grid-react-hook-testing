@@ -46,39 +46,49 @@ const App = function (props) {
     };
 
     const handleRowClicked = (params) => {
+       // console.log('Clicked row',params.data);
         setSelectedCount(gridRef.current.api.getSelectedRows().length);
     };
     const handleCellClicked = (params) => {
+    //    console.log('Clicked cell',params.value);
         setSelectedCellContents(params.value);
     };
 
-    const selectedCountTxt = "Selected Rows: " + selectedCount;
-
     return (
+      <div>
+        <button id="selectAll" onClick={handleSelectAll}>
+          Select All Rows
+        </button>
+        <button id="deSelectAll" onClick={handleDeselectAll}>
+          Deselect All Rows
+        </button>
         <div>
-            <button id="selectAll" onClick={handleSelectAll}>Select All Rows</button>
-            <button id="deSelectAll" onClick={handleDeselectAll}>Deselect All Rows</button>
-            <div>{selectedCountTxt}</div>
-            <div>Selected Cell value: {selectedCellContents}</div>
-            <div
-                className="ag-theme-balham"
-                style={{
-                    height: '500px',
-                    width: '600px'
-                }}>
-                <AgGridReact
-                    ref={gridRef}
-                    columnDefs={columnDefs}
-                    defaultColDef={defaultColDef}
-                    alwaysShowHorizontalScroll
-                    animateRows={true}
-                    rowSelection='multiple'
-                    rowData={rowData}
-                    onRowClicked={(p) => handleRowClicked(p)}
-                    onCellClicked={(p) => handleCellClicked(p)}
-                />
-            </div>
+          <label htmlFor="selected-count">Selected Rows:</label>
+          <output id="selected-count">{selectedCount}</output>
+          <br />
+          <label htmlFor="cell-value">Selected Cell Value:</label>
+          <output id="cell-value">{selectedCellContents}</output>
         </div>
+        <div
+          className="ag-theme-balham"
+          style={{
+            height: "500px",
+            width: "600px",
+          }}
+        >
+          <AgGridReact
+            ref={gridRef}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            alwaysShowHorizontalScroll
+            animateRows={true}
+            rowSelection="multiple"
+            rowData={rowData}
+            onRowClicked={(p) => handleRowClicked(p)}
+            onCellClicked={(p) => handleCellClicked(p)}
+          />
+        </div>
+      </div>
     );
 };
 export default App;
