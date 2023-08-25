@@ -50,12 +50,12 @@ const App = function (props) {
     };
 
     const defaultRowClicked = (params) => {
-        // console.log('Clicked row',params.data);
+         //console.log('Clicked row',params.data);
          setSelectedCount(gridRef.current.api.getSelectedRows().length);
      };
 
     const propsHandleRowClicked = props.handleRowClicked ? (params) => {
-       // console.log('Clicked row override',params.data);
+        //console.log('Clicked row override',params.data);
         props.handleRowClicked(params);
         setSelectedCount(gridRef.current.api.getSelectedRows().length);
     }
@@ -63,7 +63,7 @@ const App = function (props) {
 
     const handleRowClicked = propsHandleRowClicked ?? defaultRowClicked;
     const handleCellClicked = (params) => {
-    //    console.log('Clicked cell',params.value);
+        //console.log('Clicked cell',params.value);
         setSelectedCellContents(params.value);
     };
 
